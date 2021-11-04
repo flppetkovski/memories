@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react'
 import {
   Paper,
@@ -10,7 +11,7 @@ import moment from 'moment'
 import { useParams, useHistory, Link } from 'react-router-dom'
 
 import { getPost, getPostsBySearch } from '../../actions/posts'
-import CommentSection from './CommentSection'
+// import CommentSection from './CommentSection'
 import useStyles from './styles'
 
 const Post = () => {
@@ -78,13 +79,6 @@ const Post = () => {
           <Typography variant="body1">
             {moment(post.createdAt).fromNow()}
           </Typography>
-          <Divider style={{ margin: '20px 0' }} />
-          <Typography variant="body1">
-            <strong>Realtime Chat - coming soon!</strong>
-          </Typography>
-          <Divider style={{ margin: '20px 0' }} />
-          <CommentSection post={post} />
-          <Divider style={{ margin: '20px 0' }} />
         </div>
         <div className={classes.imageSection}>
           <img
@@ -122,7 +116,7 @@ const Post = () => {
                   <Typography gutterBottom variant="subtitle1">
                     Likes: {likes.length}
                   </Typography>
-                  <img src={selectedFile} width="200px" />
+                  <img src={selectedFile} width="200px" alt={name} />
                 </div>
               )
             )}
