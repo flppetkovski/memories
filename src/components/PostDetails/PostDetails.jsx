@@ -10,6 +10,7 @@ import moment from 'moment'
 import { useParams, useHistory } from 'react-router-dom'
 
 import { getPost, getPostsBySearch } from '../../actions/posts'
+import CommentSection from './CommentSection'
 import useStyles from './styles'
 
 const Post = () => {
@@ -21,15 +22,12 @@ const Post = () => {
 
   useEffect(() => {
     dispatch(getPost(id))
-    // eslint-disable-next-line
   }, [id])
 
   useEffect(() => {
     if (post) {
       dispatch(getPostsBySearch({ search: 'none', tags: post?.tags.join(',') }))
-      // eslint-disable-next-line
     }
-    // eslint-disable-next-line
   }, [post])
 
   if (!post) return null
@@ -68,13 +66,9 @@ const Post = () => {
             {moment(post.createdAt).fromNow()}
           </Typography>
           <Divider style={{ margin: '20px 0' }} />
-          <Typography variant="body1">
-            <strong>Realtime Chat - coming soon!</strong>
-          </Typography>
+
           <Divider style={{ margin: '20px 0' }} />
-          <Typography variant="body1">
-            <strong>Comments - coming soon!</strong>
-          </Typography>
+          <CommentSection post={post} />
           <Divider style={{ margin: '20px 0' }} />
         </div>
         <div className={classes.imageSection}>
@@ -113,7 +107,7 @@ const Post = () => {
                   <Typography gutterBottom variant="subtitle1">
                     Likes: {likes.length}
                   </Typography>
-                  <img src={selectedFile} width="200px" alt={name} />
+                  <img src={selectedFile} width="200px" />
                 </div>
               )
             )}

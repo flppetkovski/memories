@@ -1,4 +1,4 @@
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles'
 
 export default makeStyles((theme) => ({
   media: {
@@ -6,7 +6,6 @@ export default makeStyles((theme) => ({
     objectFit: 'cover',
     width: '100%',
     maxHeight: '600px',
-
   },
   card: {
     display: 'flex',
@@ -34,6 +33,21 @@ export default makeStyles((theme) => ({
     },
   },
   loadingPaper: {
-    display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '20px', borderRadius: '15px', height: '39vh',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: '20px',
+    borderRadius: '15px',
+    height: '39vh',
   },
-}));
+  commentsOuterContainer: {
+    display: 'flex',
+    justifyContent: 'space-between',
+  },
+  commentsInnerContainer: {
+    height: '300px',
+    minWidth: '15rem',
+    overflowY: 'auto',
+    marginRight: '30px',
+  },
+}))
