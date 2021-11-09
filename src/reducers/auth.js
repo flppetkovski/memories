@@ -8,7 +8,8 @@ const authReducer = (state = { authData: null }, action) => {
       return { ...state, authData: action.data, loading: false, errors: null }
     case actionType.AUTH_ERROR:
       return { ...state, loading: false, errors: true }
-
+    case actionType.AUTH_RESET:
+      return { ...state, loading: false, errors: false }
     case actionType.LOGOUT:
       localStorage.clear()
 

@@ -8,7 +8,6 @@ import {
   Grid,
   Typography,
   Container,
-  CircularProgress,
 } from '@material-ui/core'
 import { useHistory } from 'react-router-dom'
 import { GoogleLogin } from 'react-google-login'
@@ -16,7 +15,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 
 import Icon from './icon'
 import { signin, signup } from '../../actions/auth'
-import { AUTH } from '../../constants/actionTypes'
+import { AUTH, AUTH_RESET } from '../../constants/actionTypes'
 import useStyles from './styles'
 import Input from './Input'
 
@@ -28,7 +27,7 @@ const initialState = {
   confirmPassword: '',
 }
 const SignUp = () => {
-  const { loading, errors } = useSelector((state) => state.auth)
+  const { errors } = useSelector((state) => state.auth)
   const [form, setForm] = useState(initialState)
   const [isSignup, setIsSignup] = useState(false)
   const dispatch = useDispatch()
@@ -52,19 +51,25 @@ const SignUp = () => {
       dispatch(signup(form, history))
     } else {
       try {
+        dispatch({ type: AUTH_RESET })
+
         dispatch(signin(form, history))
       } catch (e) {
-        if (errors) setError(true)
+        setTimeout(() => {
+          setError(false)
+        }, 2000)
       }
     }
   }
 
   useEffect(() => {
-    setError(false)
+    dispatch({ type: AUTH_RESET })
+
     if (errors) setError(true)
     setTimeout(() => {
       setError(false)
     }, 2000)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [errors])
 
   const googleSuccess = async (res) => {
@@ -127,7 +132,6 @@ const SignUp = () => {
               type={showPassword ? 'text' : 'password'}
               handleShowPassword={handleShowPassword}
             />
-            {loading ? <CircularProgress /> : null}
             {error ? <p style={{ color: 'red' }}>Wrong credentials</p> : null}
 
             {isSignup && (

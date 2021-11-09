@@ -10,5 +10,6 @@ export const START_LOADING = 'START_LOADING'
 
 export const AUTH = 'AUTH'
 export const AUTH_ERROR = 'AUTH_ERROR'
+export const AUTH_RESET = 'AUTH_RESET'
 export const LOGOUT = 'LOGOUT'
 export const COMMENT = 'COMMENT'
