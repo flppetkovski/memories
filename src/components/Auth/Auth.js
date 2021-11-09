@@ -8,6 +8,7 @@ import {
   Grid,
   Typography,
   Container,
+  CircularProgress,
 } from '@material-ui/core'
 import { useHistory } from 'react-router-dom'
 import { GoogleLogin } from 'react-google-login'
@@ -27,7 +28,7 @@ const initialState = {
   confirmPassword: '',
 }
 const SignUp = () => {
-  const errors = useSelector((state) => state.auth)
+  const { loading, errors } = useSelector((state) => state.auth)
   const [form, setForm] = useState(initialState)
   const [isSignup, setIsSignup] = useState(false)
   const dispatch = useDispatch()
@@ -126,6 +127,7 @@ const SignUp = () => {
               type={showPassword ? 'text' : 'password'}
               handleShowPassword={handleShowPassword}
             />
+            {loading ? <CircularProgress /> : null}
             {error ? <p style={{ color: 'red' }}>Wrong credentials</p> : null}
 
             {isSignup && (
